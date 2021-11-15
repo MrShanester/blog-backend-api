@@ -46,10 +46,15 @@ export default {
       post: {},
     };
   },
-  created() {
-    axios.get("/posts/" + this.$route.params.id).then((response) => {
-      this.post = response.data;
-    });
+  created: function () {
+    this.postsShow();
+  },
+  methods: {
+    postsShow: function () {
+      axios.get("/posts/" + this.$route.params.id).then((response) => {
+        this.post = response.data;
+      });
+    },
   },
 };
 </script>
