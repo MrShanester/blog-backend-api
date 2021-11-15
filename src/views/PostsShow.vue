@@ -1,15 +1,9 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div v-for="post in posts" v-bind:key="post.id">
-      <h2>{{ post.title }}</h2>
-      <router-link v-bind:to="`/posts/${post.id}`">
-        <img v-bind:src="post.image" v-bind:alt="post.title" />
-      </router-link>
-      <p>{{ post.body }}</p>
-      <p></p>
-      <p>---------------------------------</p>
-    </div>
+    <h1>{{ post.title }}</h1>
+    <img v-bind:src="post.image" v-bind:alt="post.title" />
+    <p>{{ post.body }}</p>
+    <a href="/">Home</a>
   </div>
 </template>
 
@@ -49,19 +43,13 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Welcome To My Blog",
-      posts: [],
+      post: {},
     };
   },
-  created: function () {
-    this.indexPosts();
-  },
-  methods: {
-    indexPosts: function () {
-      axios.get("/posts").then((response) => {
-        this.posts = response.data;
-      });
-    },
+  created() {
+    axios.get("/posts/" + this.$route.params.id).then((response) => {
+      this.post = response.data;
+    });
   },
 };
 </script>
