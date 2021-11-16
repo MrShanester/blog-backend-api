@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <h1>{{ post.title }}</h1>
+    <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image" v-bind:alt="post.title" />
     <p>{{ post.body }}</p>
+    <router-link v-bind:to="`/posts/${post.id}/edit`">Edit Post</router-link>
+    |
     <a href="/">Home</a>
   </div>
 </template>
