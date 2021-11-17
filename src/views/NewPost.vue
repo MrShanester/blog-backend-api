@@ -1,6 +1,6 @@
 <template>
   <div class="newpost">
-    <form v-on:submit.prevent="createPost()">
+    <form v-on:submit.prevent="">
       <h1>Make a Post</h1>
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
@@ -30,7 +30,11 @@
       </div>
       <p></p>
       <button v-on:click="createPost()">Create</button>
+      <p></p>
     </form>
+    <p v-if="status == 401">Try Signing In</p>
+    <p></p>
+    <img v-if="status" :src="`https://http.cat/${status}`" />
   </div>
 </template>
 
@@ -47,19 +51,27 @@ export default {
     return {
       newPostParams: { body: "" },
       errors: [],
+      status: "",
     };
   },
   methods: {
     createPost: function () {
-      axios.post("/posts", this.newPostParams).then((response) => {
-        console.log(response.data);
-        this.posts.push(response.data);
-      });
-      this.newPostParams.title = "";
-      this.newPostParams.body = "";
-      this.newPostParams.image = "";
-      this.$router.push("/");
-      location.reload();
+      axios
+        .post("/posts", this.newPostParams)
+        .then((response) => {
+          console.log(response.data);
+          this.posts.push(response.data);
+        })
+        .catch((error) => {
+          this.status = error.response.status;
+
+          console.log(error.response.data);
+        });
+      // this.newPostParams.title = "";
+      // this.newPostParams.body = "";
+      // this.newPostParams.image = "";
+      // this.$router.push("/");
+      // location.reload();
     },
   },
 };
