@@ -2,20 +2,26 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <div v-for="post in posts" v-bind:key="post.id">
-      <h2>{{ post.title }}</h2>
+      <div v-bind:class="{ hyphen: isActive }" v-on:click="changeActive()">
+        <h2>{{ post.title }}</h2>
+      </div>
       <div class="col d-flex justify-content-center">
         <div class="card" style="width: 18rem">
           <img v-bind:src="post.image" v-bind:alt="post.title" />
-          <div class="card-body">
-            <p class="card-text">
-              {{ post.body }}
-            </p>
+          <div class="selected">
+            <div class="card-body">
+              <p class="card-text">
+                {{ post.body }}
+              </p>
+            </div>
           </div>
-          <div class="col d-flex justify-content-center">
-            <div class="card-body" id="button">
-              <router-link v-bind:to="`/posts/${post.id}`">
-                <button>View Post</button>
-              </router-link>
+          <div class="selected2">
+            <div class="col d-flex justify-content-center">
+              <div class="card-body" id="button">
+                <router-link v-bind:to="`/posts/${post.id}`">
+                  <button>View Post</button>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -29,7 +35,7 @@
 <style scoped>
 h1 {
   text-align: center;
-  border: 12px solid;
+  border: 8px solid;
   border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
 }
 
@@ -50,6 +56,20 @@ h2 {
   border-right-style: solid;
 }
 
+.hyphen {
+  text-align: center;
+  border: 12px solid;
+  border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
+}
+
+.selected {
+  background-color: aquamarine;
+}
+
+.selected2:hover {
+  background-color: red;
+}
+
 .home {
   margin: 0 auto;
   padding: 10px 25px;
@@ -68,6 +88,7 @@ export default {
     return {
       message: "Welcome To My Blog",
       posts: [],
+      isActive: false,
     };
   },
   created: function () {
@@ -78,6 +99,9 @@ export default {
       axios.get("/posts").then((response) => {
         this.posts = response.data;
       });
+    },
+    changeActive: function () {
+      this.isActive = true;
     },
   },
 };
