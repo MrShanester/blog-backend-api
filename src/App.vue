@@ -64,5 +64,6 @@ p {
 
 body {
   background-image: url(./assets/grey_wash_wall.png);
+  text-align: center;
 }
 </style>

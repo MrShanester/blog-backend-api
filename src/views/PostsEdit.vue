@@ -25,7 +25,7 @@
       <p></p>
       <button v-on:click="updatePost()">Update</button>
       |
-      <a href="/">Back</a>
+      <a class="text-danger" href="/">Back</a>
       |
       <button v-on:click="deletePost()">Delete</button>
     </form>
@@ -39,6 +39,10 @@ h1 {
   border-bottom-style: dashed;
   border-left-style: solid;
   border-right-style: solid;
+}
+
+.newpost {
+  text-align: center;
 }
 </style>
 

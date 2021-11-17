@@ -22,6 +22,12 @@
   </div>
 </template>
 
+<style scoped>
+.login {
+  text-align: center;
+}
+</style>
+
 <script>
 import axios from "axios";
 

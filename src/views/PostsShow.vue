@@ -36,6 +36,8 @@ h2 {
   border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
 
   background: rgb(228, 226, 226);
+
+  text-align: center;
 }
 </style>
 

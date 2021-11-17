@@ -35,6 +35,12 @@
   </div>
 </template>
 
+<style scoped>
+.signup {
+  text-align: center;
+}
+</style>
+
 <script>
 import axios from "axios";
 
