@@ -2,7 +2,7 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <div v-for="post in posts" v-bind:key="post.id">
-      <div v-bind:class="{ hyphen: isActive }" v-on:click="changeActive()">
+      <div class="hyphen">
         <h2>{{ post.title }}</h2>
       </div>
       <div class="col d-flex justify-content-center">
@@ -56,9 +56,10 @@ h2 {
   border-right-style: solid;
 }
 
-.hyphen {
+.hyphen:hover {
   text-align: center;
-  border: 12px solid;
+  height: 50px;
+  border: 3px solid;
   border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
 }
 
@@ -67,7 +68,7 @@ h2 {
 }
 
 .selected2:hover {
-  background-color: red;
+  background-color: purple;
 }
 
 .home {
@@ -75,8 +76,6 @@ h2 {
   padding: 10px 25px;
   border: 3px solid;
   border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
-
-  background-image: url("https://img.freepik.com/free-photo/painted-grey-background-with-metal-texture_125540-779.jpg?size=626&ext=jpg");
 }
 </style>
 

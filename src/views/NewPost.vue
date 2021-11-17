@@ -15,6 +15,14 @@
         <label>Body:</label>
         <p></p>
         <input type="string" v-model="newPostParams.body" />
+        <p></p>
+
+        <small v-if="newPostParams.body.length <= 200 && newPostParams.body.length > 0">
+          {{ 200 - newPostParams.body.length }} body letters remaining
+        </small>
+        <small v-if="newPostParams.body.length > 200" class="text-danger">
+          {{ 200 - newPostParams.body.length }} body letters remaining
+        </small>
       </div>
       <p></p>
       <div>
@@ -28,13 +36,18 @@
   </div>
 </template>
 
+<style scoped>
+.newpost {
+  text-align: center;
+}
+</style>
 <script>
 import axios from "axios";
 
 export default {
   data: function () {
     return {
-      newPostParams: {},
+      newPostParams: { body: "" },
       errors: [],
     };
   },

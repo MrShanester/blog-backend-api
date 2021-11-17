@@ -63,6 +63,6 @@ p {
 }
 
 body {
-  background-image: "https://img.freepik.com/free-photo/painted-grey-background-with-metal-texture_125540-779.jpg?size=626&ext=jpg";
+  background-image: url(./assets/grey_wash_wall.png);
 }
 </style>
