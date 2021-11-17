@@ -14,15 +14,13 @@
       <div>
         <label>Body:</label>
         <p></p>
-        <input type="string" v-model="newPostParams.body" />
+        <input type="string" v-model="newPostParams.body" maxlength="100" />
         <p></p>
-
-        <small v-if="newPostParams.body.length <= 200 && newPostParams.body.length > 0">
-          {{ 200 - newPostParams.body.length }} body letters remaining
+        <small v-if="newPostParams.body.length == 0"></small>
+        <small v-else-if="newPostParams.body.length < 100 && newPostParams.body.length > 0">
+          {{ 100 - newPostParams.body.length }} body letters remaining
         </small>
-        <small v-if="newPostParams.body.length > 200" class="text-danger">
-          {{ 200 - newPostParams.body.length }} body letters remaining
-        </small>
+        <small v-else class="text-danger">0 body letters remaining</small>
       </div>
       <p></p>
       <div>
