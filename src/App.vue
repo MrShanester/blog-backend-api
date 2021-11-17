@@ -49,4 +49,20 @@
   </div>
 </template>
 
-<style></style>
+<style>
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+body {
+  background-image: "https://img.freepik.com/free-photo/painted-grey-background-with-metal-texture_125540-779.jpg?size=626&ext=jpg";
+}
+</style>

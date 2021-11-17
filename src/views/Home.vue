@@ -3,11 +3,24 @@
     <h1>{{ message }}</h1>
     <div v-for="post in posts" v-bind:key="post.id">
       <h2>{{ post.title }}</h2>
-      <router-link v-bind:to="`/posts/${post.id}`">
-        <img v-bind:src="post.image" v-bind:alt="post.title" />
-      </router-link>
-      <p>{{ post.body }}</p>
-      <p></p>
+      <div class="col d-flex justify-content-center">
+        <div class="card" style="width: 18rem">
+          <img v-bind:src="post.image" v-bind:alt="post.title" />
+          <div class="card-body">
+            <p class="card-text">
+              {{ post.body }}
+            </p>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <div class="card-body" id="button">
+              <router-link v-bind:to="`/posts/${post.id}`">
+                <button>View Post</button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <p>---------------------------------</p>
     </div>
   </div>
@@ -20,12 +33,16 @@ h1 {
   border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
 }
 
-img {
-  width: 250px;
-  height: 350px;
+p {
+  text-align: center;
+}
+
+#button {
+  text-align: center;
 }
 
 h2 {
+  text-align: center;
   font-style: italic;
   border-top-style: dashed;
   border-bottom-style: dashed;
@@ -39,7 +56,7 @@ h2 {
   border: 3px solid;
   border-image: linear-gradient(135deg, #ff0000 0%, #49ff33 25%, #3364ff 50%, #f6ff33 75%, #ff00a8 100%) 1;
 
-  background: rgb(228, 226, 226);
+  background-image: url("https://img.freepik.com/free-photo/painted-grey-background-with-metal-texture_125540-779.jpg?size=626&ext=jpg");
 }
 </style>
 
