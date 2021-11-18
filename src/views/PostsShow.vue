@@ -3,6 +3,8 @@
     <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image" v-bind:alt="post.title" />
     <p>{{ post.body }}</p>
+    <p>Added: {{ time(post.created_at) }}</p>
+    <p>Last Edit: {{ time(post.updated_at) }}</p>
     <router-link v-bind:to="`/posts/${post.id}/edit`">Edit Post</router-link>
     |
     <a href="/">Home</a>
@@ -43,6 +45,7 @@ h2 {
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function () {
@@ -57,7 +60,11 @@ export default {
     postsShow: function () {
       axios.get("/posts/" + this.$route.params.id).then((response) => {
         this.post = response.data;
+        console.log(response.data);
       });
+    },
+    time: function (info) {
+      return moment(info).format("MMMM Do YYYY, h:mm:ss a");
     },
   },
 };

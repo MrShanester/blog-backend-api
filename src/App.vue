@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navigation</a>
         <button
@@ -31,13 +31,16 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Log-in
+                Account
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/login">Log-in</a></li>
-                <li><a class="dropdown-item" href="/signup">Sign-Up</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+                <div v-if="isLoggedIn()">
+                  <li><a class="dropdown-item" href="/login">Log-in</a></li>
+                  <li><a class="dropdown-item" href="/signup">Sign-Up</a></li>
+                </div>
+                <div v-if="isLoggedIn() == false">
+                  <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+                </div>
               </ul>
             </li>
           </ul>
@@ -45,11 +48,20 @@
       </div>
     </nav>
 
+    <div v-if="flashMessage" class="alert alert-success">
+      {{ flashMessage }}
+      <button class="but" v-on:click="reload()">x</button>
+    </div>
+
     <router-view />
   </div>
 </template>
 
 <style>
+.but {
+  text-align: right;
+}
+
 h1 {
   text-align: center;
 }
@@ -67,3 +79,27 @@ body {
   text-align: center;
 }
 </style>
+
+<script>
+// import axios from "axios";
+
+export default {
+  data: function () {
+    return {
+      flashMessage: "",
+    };
+  },
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    reload: function () {
+      location.reload();
+    },
+  },
+};
+</script>
